@@ -1,4 +1,5 @@
 package com.android.iansoft.AdsLover;
+
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -78,82 +79,45 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		StartAppSDK.init(this, "103774315", "211118112", true); //TODO: Replace with your IDs
-		
-		/** Create Splash Ad **/
-		StartAppAd.showSplash(this, savedInstanceState,
-				new SplashConfig()
-					.setTheme(Theme.SKY)
-					.setLogo(R.drawable.logo360x360)
-					.setAppName("StartApp Example")
-		);
+		StartAppSDK.init(this, "103774315", "211118112", true);
 		
 		setContentView(R.layout.main);
-		
+		onShowSplash(savedInstanceState);
 		/** Add Slider **/
 		StartAppAd.showSlider(this);
-		
+		onShowNativeAd();
+	}
+	
+	/** Create Splash Ad **/
+	private void onShowSplash(Bundle savedInstanceState) {
+		StartAppAd.showSplash(this, savedInstanceState,
+			new SplashConfig()
+				.setTheme(Theme.SKY)
+				.setLogo(R.drawable.logo360x360)
+				.setAppName("StartApp Example")
+		);
+	}
+	
+	/** 
+	* Load Native Ad with the following parameters:
+	* 1. Only 1 Ad
+	* 2. Download ad image automatically
+	* 3. Image size of 150x150px
+	*/
+	private void onShowNativeAd() {
 		/** Initialize Native Ad views **/
-		imgFreeApp = (ImageView) findViewById(R.id.imgFreeApp);
-		txtFreeApp = (TextView) findViewById(R.id.txtFreeApp);
+		imgFreeApp = (ImageView)findViewById(R.id.imgFreeApp);
+		txtFreeApp = (TextView)findViewById(R.id.txtFreeApp);
 		if (txtFreeApp != null) {
 			txtFreeApp.setText("Loading Native Ad...");
 		}
 		
-		/** 
-		 * Load Native Ad with the following parameters:
-		 * 1. Only 1 Ad
-		 * 2. Download ad image automatically
-		 * 3. Image size of 150x150px
-		 */
 		startAppNativeAd.loadAd(
 				new NativeAdPreferences()
 					.setAdsNumber(1)
 					.setAutoBitmapDownload(true)
 					.setImageSize(NativeAdBitmapSize.SIZE150X150),
 				nativeAdListener);
-	}
-
-	/**
-	 * Method to run when the next activity button is clicked.
-	 * @param view
-	 */
-	public void btnNextActivityClick(View view) {
-		
-		// Show an Ad
-		startAppAd.showAd(new AdDisplayListener() {
-			
-			/**
-			 * Callback when Ad has been hidden
-			 * @param ad
-			 */
-			@Override
-			public void adHidden(Ad ad) {
-				
-				// Run second activity right after the ad was hidden
-				Intent nextActivity = new Intent(MainActivity.this,
-						SecondActivity.class);
-				startActivity(nextActivity);
-			}
-
-			/**
-			 * Callback when ad has been displayed
-			 * @param ad
-			 */
-			@Override
-			public void adDisplayed(Ad ad) {
-				
-			}
-
-			/**
-			 * Callback when ad has been clicked
-			 * @param ad
-			 */
-			@Override
-			public void adClicked(Ad arg0) {
-				
-			}
-		});
 	}
 
 	/**
@@ -166,29 +130,18 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	/**
-	 * Part of the activity's life cycle, StartAppAd should be integrated here. 
-	 */
 	@Override
 	public void onResume() {
 		super.onResume();
 		startAppAd.onResume();
 	}
 
-	/**
-	 * Part of the activity's life cycle, StartAppAd should be integrated here
-	 * for the home button exit ad integration.
-	 */
 	@Override
 	public void onPause() {
 		super.onPause();
 		startAppAd.onPause();
 	}
 
-	/**
-	 * Part of the activity's life cycle, StartAppAd should be integrated here
-	 * for the back button exit ad integration.
-	 */
 	@Override
 	public void onBackPressed() {
 		startAppAd.onBackPressed();
