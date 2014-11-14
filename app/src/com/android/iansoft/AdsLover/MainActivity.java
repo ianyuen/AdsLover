@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -82,6 +83,7 @@ public class MainActivity extends Activity {
 		StartAppSDK.init(this, "103774315", "211118112", true);
 		
 		setContentView(R.layout.main);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		onShowSplash(savedInstanceState);
 		/** Add Slider **/
 		StartAppAd.showSlider(this);
