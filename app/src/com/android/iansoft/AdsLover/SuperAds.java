@@ -25,7 +25,7 @@ public class SuperAds extends Activity {
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
-		countDownTimer = new CountDownTimer(5000, 1000) {
+		countDownTimer = new CountDownTimer(9000, 1000) {
 			public void onTick(long millisUntilFinished) {
 				Log.v("ianyuen", "remain: " + millisUntilFinished / 1000);
 			}
