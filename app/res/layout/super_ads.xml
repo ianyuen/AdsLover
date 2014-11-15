@@ -15,33 +15,37 @@
 		android:id="@+id/startAppBanner2"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"/>
+		android:layout_centerHorizontal="true"
+		android:layout_alignParentBottom="true"/>
 
 	<com.startapp.android.publish.banner.Banner
 		android:id="@+id/startAppBanner3"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"/>
+		android:layout_centerHorizontal="true"
+		android:layout_alignParentBottom="true"/>
 
 	<com.startapp.android.publish.banner.Banner
 		android:id="@+id/startAppBanner4"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"/>
+		android:layout_centerHorizontal="true"
+		android:layout_alignParentBottom="true"/>
 
 	<com.startapp.android.publish.banner.Banner
 		android:id="@+id/startAppBanner5"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"/>
+		android:layout_centerHorizontal="true"
+		android:layout_alignParentBottom="true"/>
 		
 	<Button
 		android:id="@+id/btnOffSuperAds"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_alignParentBottom="true"
 		android:layout_marginBottom="40dp"
+		android:layout_width="wrap_content"
+		android:text="@string/super_ad_off"
+		android:layout_height="wrap_content"
 		android:onClick="btnOffSuperAdsClick"
-		android:text="@string/super_ad_off"/>
+		android:layout_centerHorizontal="true"
+		android:layout_alignParentBottom="true"/>
 </RelativeLayout>

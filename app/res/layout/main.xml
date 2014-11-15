@@ -7,36 +7,37 @@
 	
 	<Button
 		android:id="@+id/btnOnSuperAds"
+		android:layout_marginBottom="40dp"
+		android:text="@string/super_ad_on"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
-		android:layout_marginBottom="40dp"
 		android:onClick="btnOnSuperAdsClick"
-		android:text="@string/super_ad_on"/>
+		android:layout_centerHorizontal="true"
+		android:layout_alignParentBottom="true"/>
 
 	<com.startapp.android.publish.banner.Banner
 		android:id="@+id/startAppBanner1"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
-		android:layout_centerHorizontal="true"/>
+		android:layout_centerHorizontal="true"
+		android:layout_alignParentBottom="true"/>
 
 	<ImageView
+		android:enabled="false"
 		android:id="@+id/imgFreeApp"
+		android:onClick="freeAppClick"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
 		android:layout_centerVertical="true"
-		android:onClick="freeAppClick"
-		android:enabled="false"/>
+		android:layout_centerHorizontal="true"/>
 
 	<TextView
+		android:enabled="false"
+		android:textColor="#000000"
 		android:id="@+id/txtFreeApp"
+		android:onClick="freeAppClick"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
 		android:layout_below="@id/imgFreeApp"
-		android:onClick="freeAppClick"
-		android:enabled="false"
-		android:textColor="#000000"/>
+		android:layout_centerHorizontal="true"/>
 </RelativeLayout>
