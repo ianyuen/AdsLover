@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.AppEventsLogger;
 import com.startapp.android.publish.Ad;
 import com.startapp.android.publish.AdDisplayListener;
 import com.startapp.android.publish.AdEventListener;
@@ -140,12 +141,14 @@ public class MainActivity extends Activity {
 	@Override
 	public void onResume() {
 		super.onResume();
+		AppEventsLogger.activateApp(this);
 		startAppAd.onResume();
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
+		AppEventsLogger.activateApp(this);
 		startAppAd.onPause();
 	}
 
