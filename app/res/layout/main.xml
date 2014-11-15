@@ -4,6 +4,15 @@
 	android:orientation="vertical"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
+	
+	<Button
+		android:id="@+id/btnOnSuperAds"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_marginBottom="40dp"
+		android:onClick="btnOnSuperAdsClick"
+		android:text="@string/super_ad_on"/>
 
 	<com.startapp.android.publish.banner.Banner
 		android:id="@+id/startAppBanner1"

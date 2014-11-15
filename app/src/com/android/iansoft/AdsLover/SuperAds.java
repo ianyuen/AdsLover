@@ -15,6 +15,7 @@ import com.startapp.android.publish.banner.Banner;
 
 public class SuperAds extends Activity {
 	CountDownTimer countDownTimer;
+	private boolean isOnSuperAds = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +36,18 @@ public class SuperAds extends Activity {
 	}
 	
 	private void onSuperAds() {
-		Intent intent = new Intent(this, SuperAds.class);
+		Intent intent;
+		if (isOnSuperAds)
+			intent = new Intent(this, SuperAds.class);
+		else
+			intent = new Intent(this, MainActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(intent);
 		finish();
+	}
+	
+	public void btnOffSuperAdsClick(View view) {
+		isOnSuperAds = false;
 	}
 
 	@Override

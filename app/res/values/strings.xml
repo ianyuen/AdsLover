@@ -2,4 +2,6 @@
 <resources>
 	<string name="app_name">AdsLover</string>
 	<string name="super_ad">Super Ads</string>
+	<string name="super_ad_on">bật Super Ads</string>
+	<string name="super_ad_off">tắt Super Ads</string>
 </resources>
