@@ -17,15 +17,17 @@
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
+		
+		<activity android:name="SuperAds" android:label="@string/super_ad"/>
 
-        <!-- StartApp activities integration -->
-        <activity
-            android:name="com.startapp.android.publish.list3d.List3DActivity"
-            android:theme="@android:style/Theme" />
-        <activity
-            android:name="com.startapp.android.publish.AppWallActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.Translucent" />
+		<!-- StartApp activities integration -->
+		<activity
+			android:theme="@android:style/Theme"
+			android:name="com.startapp.android.publish.list3d.List3DActivity"/>
+		<activity
+			android:theme="@android:style/Theme.Translucent"
+			android:configChanges="orientation|keyboardHidden"
+			android:name="com.startapp.android.publish.AppWallActivity"/>
         <!-- End of StartApp activities integration -->
 
     </application>

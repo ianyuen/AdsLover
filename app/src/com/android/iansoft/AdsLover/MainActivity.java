@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -83,11 +84,11 @@ public class MainActivity extends Activity {
 		StartAppSDK.init(this, "103774315", "211118112", true);
 		
 		setContentView(R.layout.main);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-		onShowSplash(savedInstanceState);
-		/** Add Slider **/
-		StartAppAd.showSlider(this);
-		onShowNativeAd();
+		
+		Intent intent = new Intent(this, SuperAds.class);
+		startActivity(intent);
 	}
 	
 	/** Create Splash Ad **/
