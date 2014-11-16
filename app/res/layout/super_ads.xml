@@ -4,40 +4,30 @@
 	android:orientation="vertical"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-
-	<com.startapp.android.publish.banner.Banner
-		android:id="@+id/startAppBanner1"
-		android:layout_width="match_parent"
+	
+	<ImageView
+		android:enabled="false"
+		android:id="@+id/imgFreeApp"
+		android:onClick="freeAppClick"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
+		android:layout_centerVertical="true"
+		android:layout_centerHorizontal="true"/>
+
+	<TextView
+		android:enabled="false"
+		android:textColor="#000000"
+		android:id="@+id/txtFreeApp"
+		android:onClick="freeAppClick"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/imgFreeApp"
 		android:layout_centerHorizontal="true"/>
 
 	<com.startapp.android.publish.banner.Banner
-		android:id="@+id/startAppBanner2"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_alignParentBottom="true"/>
-
-	<com.startapp.android.publish.banner.Banner
-		android:id="@+id/startAppBanner3"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_alignParentBottom="true"/>
-
-	<com.startapp.android.publish.banner.Banner
-		android:id="@+id/startAppBanner4"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_alignParentBottom="true"/>
-
-	<com.startapp.android.publish.banner.Banner
-		android:id="@+id/startAppBanner5"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_alignParentBottom="true"/>
+		android:id="@+id/startAppBanner1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"/>
 		
 	<Button
 		android:id="@+id/btnOffSuperAds"
