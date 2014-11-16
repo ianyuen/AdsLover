@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.iansoft.AdsLover.AdsManager;
 import com.startapp.android.publish.Ad;
 import com.startapp.android.publish.AdEventListener;
 import com.startapp.android.publish.nativead.NativeAdDetails;
@@ -39,8 +40,9 @@ public class SuperAds extends Activity {
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
+		AdsManager.onShowSplash(this, savedInstanceState);
 		onShowNativeAd();
-		StartAppAd.showSlider(this);
+		AdsManager.onShowSlider(this);
 	}
 	
 	private void onSuperAds() {

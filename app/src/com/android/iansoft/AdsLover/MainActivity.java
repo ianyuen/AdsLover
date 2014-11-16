@@ -11,23 +11,18 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.iansoft.AdsLover.AdsManager;
 import com.facebook.AppEventsLogger;
 import com.startapp.android.publish.Ad;
 import com.startapp.android.publish.AdDisplayListener;
 import com.startapp.android.publish.AdEventListener;
-import com.startapp.android.publish.StartAppAd;
 import com.startapp.android.publish.StartAppSDK;
 import com.startapp.android.publish.nativead.NativeAdDetails;
 import com.startapp.android.publish.nativead.NativeAdPreferences;
 import com.startapp.android.publish.nativead.NativeAdPreferences.NativeAdBitmapSize;
 import com.startapp.android.publish.nativead.StartAppNativeAd;
-import com.startapp.android.publish.splash.SplashConfig;
-import com.startapp.android.publish.splash.SplashConfig.Theme;
 
 public class MainActivity extends Activity {
-	
-	/** StartAppAd object declaration */
-	private StartAppAd startAppAd = new StartAppAd(this);
 	
 	/** StartApp Native Ad declaration */
 	private NativeAdDetails nativeAd = null;
@@ -88,8 +83,9 @@ public class MainActivity extends Activity {
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
+		AdsManager.onShowSplash(this, savedInstanceState);
 		onShowNativeAd();
-		onShowSplash(savedInstanceState);
+		AdsManager.onShowSlider(this);
 	}
 	
 	public void btnOnSuperAdsClick(View view) {
@@ -97,16 +93,6 @@ public class MainActivity extends Activity {
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(intent);
 		finish();
-	}
-	
-	/** Create Splash Ad **/
-	private void onShowSplash(Bundle savedInstanceState) {
-		StartAppAd.showSplash(this, savedInstanceState,
-			new SplashConfig()
-				.setTheme(Theme.SKY)
-				.setLogo(R.drawable.logo360x360)
-				.setAppName("StartApp Splash Ad")
-		);
 	}
 	
 	/** 
@@ -144,20 +130,20 @@ public class MainActivity extends Activity {
 	@Override
 	public void onResume() {
 		super.onResume();
+		AdsManager.onResume();
 		AppEventsLogger.activateApp(this);
-		startAppAd.onResume();
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
+		AdsManager.onPause();
 		AppEventsLogger.activateApp(this);
-		startAppAd.onPause();
 	}
 
 	@Override
 	public void onBackPressed() {
-		startAppAd.onBackPressed();
+		AdsManager.onBackPressed();
 		super.onBackPressed();
 	}
 }
