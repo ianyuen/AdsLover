@@ -8,11 +8,15 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.android.iansoft.AdsLover.AdsManager;
+import com.android.iansoft.AdsLover.LoginActivity;
 import com.facebook.AppEventsLogger;
+import com.startapp.android.publish.StartAppAd;
 import com.startapp.android.publish.StartAppSDK;
 
 public class MainActivity extends Activity {
 
+	private StartAppAd startAppAd = new StartAppAd(this);
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,20 +40,20 @@ public class MainActivity extends Activity {
 	@Override
 	public void onResume() {
 		super.onResume();
-		AdsManager.onResume();
+		startAppAd.onResume();
 		AppEventsLogger.activateApp(this);
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
-		AdsManager.onPause();
+		startAppAd.onPause();
 		AppEventsLogger.activateApp(this);
 	}
 
 	@Override
 	public void onBackPressed() {
-		AdsManager.onBackPressed();
+		startAppAd.onBackPressed();
 		super.onBackPressed();
 	}
 }
