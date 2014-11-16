@@ -30,8 +30,8 @@ public class MainActivity extends Activity {
 	private StartAppAd startAppAd = new StartAppAd(this);
 	
 	/** StartApp Native Ad declaration */
-	private StartAppNativeAd startAppNativeAd = new StartAppNativeAd(this);
 	private NativeAdDetails nativeAd = null;
+	private StartAppNativeAd startAppNativeAd = new StartAppNativeAd(this);
 	
 	private ImageView imgFreeApp = null;
 	private TextView txtFreeApp = null;
@@ -87,6 +87,9 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		
+		onShowNativeAd();
+		onShowSplash(savedInstanceState);
 	}
 	
 	public void btnOnSuperAdsClick(View view) {
@@ -102,7 +105,7 @@ public class MainActivity extends Activity {
 			new SplashConfig()
 				.setTheme(Theme.SKY)
 				.setLogo(R.drawable.logo360x360)
-				.setAppName("StartApp Example")
+				.setAppName("StartApp Splash Ad")
 		);
 	}
 	
