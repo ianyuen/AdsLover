@@ -1,78 +1,17 @@
 package com.android.iansoft.AdsLover;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.android.iansoft.AdsLover.AdsManager;
 import com.facebook.AppEventsLogger;
-import com.startapp.android.publish.Ad;
-import com.startapp.android.publish.AdDisplayListener;
-import com.startapp.android.publish.AdEventListener;
 import com.startapp.android.publish.StartAppSDK;
-import com.startapp.android.publish.nativead.NativeAdDetails;
-import com.startapp.android.publish.nativead.NativeAdPreferences;
-import com.startapp.android.publish.nativead.NativeAdPreferences.NativeAdBitmapSize;
-import com.startapp.android.publish.nativead.StartAppNativeAd;
 
 public class MainActivity extends Activity {
-	
-	/** StartApp Native Ad declaration */
-	private NativeAdDetails nativeAd = null;
-	private StartAppNativeAd startAppNativeAd = new StartAppNativeAd(this);
-	
-	private ImageView imgFreeApp = null;
-	private TextView txtFreeApp = null;
-	
-	/** Native Ad Callback */
-	private AdEventListener nativeAdListener = new AdEventListener() {
-		
-		@Override
-		public void onReceiveAd(Ad ad) {
-			
-			// Get the native ad
-			ArrayList<NativeAdDetails> nativeAdsList = startAppNativeAd.getNativeAds();
-			if (nativeAdsList.size() > 0){
-				nativeAd = nativeAdsList.get(0);
-			}
-			
-			// Verify that an ad was retrieved
-			if (nativeAd != null){
-				
-				// When ad is received and displayed - we MUST send impression
-				nativeAd.sendImpression(MainActivity.this);
-				
-				if (imgFreeApp != null && txtFreeApp != null){
-					
-					// Set button as enabled
-					imgFreeApp.setEnabled(true);
-					txtFreeApp.setEnabled(true);
-					
-					// Set ad's image
-					imgFreeApp.setImageBitmap(nativeAd.getImageBitmap());
-					
-					// Set ad's title
-					txtFreeApp.setText(nativeAd.getTitle());
-				}
-			}
-		}
-		
-		@Override
-		public void onFailedToReceiveAd(Ad ad) {
-			
-			// Error occurred while loading the native ad
-			if (txtFreeApp != null) {
-				txtFreeApp.setText("Error while loading Native Ad");
-			}
-		}
-	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +22,8 @@ public class MainActivity extends Activity {
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
-		AdsManager.onShowSplash(this, savedInstanceState);
-		onShowNativeAd();
 		AdsManager.onShowSlider(this);
+		AdsManager.onShowSplash(this, savedInstanceState);
 	}
 	
 	public void btnOnSuperAdsClick(View view) {
@@ -93,38 +31,6 @@ public class MainActivity extends Activity {
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(intent);
 		finish();
-	}
-	
-	/** 
-	* Load Native Ad with the following parameters:
-	* 1. Only 1 Ad
-	* 2. Download ad image automatically
-	* 3. Image size of 150x150px
-	*/
-	private void onShowNativeAd() {
-		/** Initialize Native Ad views **/
-		imgFreeApp = (ImageView)findViewById(R.id.imgFreeApp);
-		txtFreeApp = (TextView)findViewById(R.id.txtFreeApp);
-		if (txtFreeApp != null) {
-			txtFreeApp.setText("Loading Native Ad...");
-		}
-		
-		startAppNativeAd.loadAd(
-				new NativeAdPreferences()
-					.setAdsNumber(1)
-					.setAutoBitmapDownload(true)
-					.setImageSize(NativeAdBitmapSize.SIZE150X150),
-				nativeAdListener);
-	}
-
-	/**
-	 * Runs when the native ad is clicked (either the image or the title).
-	 * @param view
-	 */
-	public void freeAppClick(View view){
-		if (nativeAd != null){
-			nativeAd.sendClick(this);
-		}
 	}
 
 	@Override

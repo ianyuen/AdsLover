@@ -80,7 +80,7 @@ public class SuperAds extends Activity {
 					txtFreeApp.setText(nativeAd.getTitle());
 				}
 			}
-			countDownTimer = new CountDownTimer(2000, 1000) {
+			countDownTimer = new CountDownTimer(3000, 1000) {
 				public void onTick(long millisUntilFinished) {}
 				public void onFinish() {
 					onSuperAds();
