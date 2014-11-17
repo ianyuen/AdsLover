@@ -24,8 +24,8 @@ import com.startapp.android.publish.StartAppAd;
 public class SuperAds extends Activity {
 	CountDownTimer countDownTimer;
 	private boolean isOnSuperAds = true;
-	
-	private StartAppAd startAppAd = new StartAppAd(this);
+
+	private StartAppManager mStartAppManager = new StartAppManager(this);
 	
 	private TextView txtFreeApp = null;
 	private ImageView imgFreeApp = null;
@@ -40,9 +40,9 @@ public class SuperAds extends Activity {
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
-		StartAppManager.onShowSplash(this, savedInstanceState);
 		onShowNativeAd();
-		StartAppManager.onShowSlider(this);
+		mStartAppManager.onShowSlider();
+		mStartAppManager.onShowSplash(savedInstanceState);
 	}
 	
 	private void onSuperAds() {
@@ -80,7 +80,7 @@ public class SuperAds extends Activity {
 					txtFreeApp.setText(nativeAd.getTitle());
 				}
 			}
-			countDownTimer = new CountDownTimer(3000, 1000) {
+			countDownTimer = new CountDownTimer(5000, 1000) {
 				public void onTick(long millisUntilFinished) {}
 				public void onFinish() {
 					onSuperAds();

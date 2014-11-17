@@ -15,12 +15,11 @@ import com.startapp.android.publish.nativead.NativeAdPreferences;
 import com.startapp.android.publish.nativead.NativeAdPreferences.NativeAdBitmapSize;
 import com.startapp.android.publish.nativead.StartAppNativeAd;
 import com.startapp.android.publish.StartAppAd;
-import com.startapp.android.publish.splash.SplashConfig;
-import com.startapp.android.publish.splash.SplashConfig.Theme;
 
 public class StartAppManager {
 	
 	private static Context context;
+	private static Activity mActivity;
 	private static boolean loadNativeSuccess;
 	private static StartAppAd startAppAd = null;
 	private static TextView txtNativeApp = null;
@@ -28,12 +27,16 @@ public class StartAppManager {
 	private static NativeAdDetails nativeAd = null;
 	private static StartAppNativeAd startAppNativeAd = null;
 	
-	public static void onShowSplash(Activity activity, Bundle bundle) {
-		startAppAd.showSplash(activity, bundle);
+	public StartAppManager(Activity activity) {
+		mActivity = activity;
 	}
 	
-	public static void onShowSlider(Activity activity) {
-		startAppAd.showSlider(activity);
+	public static void onShowSplash(Bundle bundle) {
+		startAppAd.showSplash(mActivity, bundle);
+	}
+	
+	public static void onShowSlider() {
+		startAppAd.showSlider(mActivity);
 	}
 	
 	private static AdEventListener nativeAdListener = new AdEventListener() {
@@ -63,12 +66,7 @@ public class StartAppManager {
 		txtNativeApp = new TextView(activity);
 		imgNativeApp = new ImageView(activity);
 		startAppNativeAd = new StartAppNativeAd(activity);
-		startAppNativeAd.loadAd(
-			new NativeAdPreferences()
-				.setAdsNumber(1)
-				.setAutoBitmapDownload(true)
-				.setImageSize(NativeAdBitmapSize.SIZE150X150),
-			nativeAdListener);
+		startAppNativeAd.loadAd(new NativeAdPreferences(), nativeAdListener);
 	}
 	
 	public static void onResume() {

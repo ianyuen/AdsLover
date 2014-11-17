@@ -16,6 +16,7 @@ import com.startapp.android.publish.StartAppSDK;
 public class MainActivity extends Activity {
 
 	private StartAppAd startAppAd = new StartAppAd(this);
+	private StartAppManager mStartAppManager = new StartAppManager(this);
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +27,9 @@ public class MainActivity extends Activity {
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
-		StartAppManager.onShowSlider(this);
-		StartAppManager.onShowNativeAd(this);
-		StartAppManager.onShowSplash(this, savedInstanceState);
+		mStartAppManager.onShowSlider();
+		//mStartAppManager.onShowNativeAd(this);
+		mStartAppManager.onShowSplash(savedInstanceState);
 	}
 	
 	public void btnOnSuperAdsClick(View view) {
