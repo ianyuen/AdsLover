@@ -18,15 +18,15 @@ import com.startapp.android.publish.StartAppAd;
 import com.startapp.android.publish.splash.SplashConfig;
 import com.startapp.android.publish.splash.SplashConfig.Theme;
 
-public class AdsManager{
+public class StartAppManager {
 	
 	private static Context context;
+	private static boolean loadNativeSuccess;
+	private static StartAppAd startAppAd = null;
 	private static TextView txtNativeApp = null;
 	private static ImageView imgNativeApp = null;
-	private static boolean loadNativeSuccess;
-	private static StartAppAd startAppAd = new StartAppAd(context);
 	private static NativeAdDetails nativeAd = null;
-	private static StartAppNativeAd startAppNativeAd = new StartAppNativeAd(context);
+	private static StartAppNativeAd startAppNativeAd = null;
 	
 	public static void onShowSplash(Activity activity, Bundle bundle) {
 		startAppAd.showSplash(activity, bundle);
@@ -62,6 +62,7 @@ public class AdsManager{
 	public static void onShowNativeAd(Activity activity) {
 		txtNativeApp = new TextView(activity);
 		imgNativeApp = new ImageView(activity);
+		startAppNativeAd = new StartAppNativeAd(activity);
 		startAppNativeAd.loadAd(
 			new NativeAdPreferences()
 				.setAdsNumber(1)

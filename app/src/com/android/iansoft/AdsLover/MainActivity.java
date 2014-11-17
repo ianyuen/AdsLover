@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.android.iansoft.AdsLover.AdsManager;
+import com.android.iansoft.AdsLover.StartAppManager;
 import com.android.iansoft.AdsLover.LoginActivity;
 import com.facebook.AppEventsLogger;
 import com.startapp.android.publish.StartAppAd;
@@ -26,8 +26,9 @@ public class MainActivity extends Activity {
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
-		AdsManager.onShowSlider(this);
-		AdsManager.onShowSplash(this, savedInstanceState);
+		StartAppManager.onShowSlider(this);
+		StartAppManager.
+		StartAppManager.onShowSplash(this, savedInstanceState);
 	}
 	
 	public void btnOnSuperAdsClick(View view) {
