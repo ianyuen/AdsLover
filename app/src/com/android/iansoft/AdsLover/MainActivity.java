@@ -6,15 +6,18 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.util.Log;
 
 import com.android.iansoft.AdsLover.StartAppManager;
 import com.android.iansoft.AdsLover.LoginActivity;
+import com.facebook.android.Facebook;
 import com.facebook.AppEventsLogger;
 import com.startapp.android.publish.StartAppAd;
 import com.startapp.android.publish.StartAppSDK;
 
 public class MainActivity extends Activity {
 
+	private Facebook facebook = null;
 	private StartAppAd startAppAd = new StartAppAd(this);
 	private StartAppManager mStartAppManager = new StartAppManager(this);
 	
@@ -26,6 +29,14 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+		facebook = new Facebook(getResources().getString(R.string.facebook_app_id));
+		if (!facebook.isSessionValid()) {
+			Intent intent = new Intent(this, LoginActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
+			finish();
+		}
 		
 		mStartAppManager.onShowSlider();
 		//mStartAppManager.onShowNativeAd(this);
