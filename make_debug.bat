@@ -1,3 +1,4 @@
 call config.bat
 cd app
-%APACHE_ANT%\ant debug
+call make_apk.bat debug
+cd ..
