@@ -26,11 +26,15 @@ public class LoginActivity extends Activity {
 		
 		setContentView(R.layout.login);
 		loginButton = (LoginButton)findViewById(R.id.loginButton);
+		
+		//showHashKey(this);
 	}
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+		Log.v("ianyuen", "");
+		
 	}
 	
 	public static void showHashKey(Context context) {    
@@ -39,6 +43,7 @@ public class LoginActivity extends Activity {
 			for (Signature signature : info.signatures) {
 				MessageDigest md = MessageDigest.getInstance("SHA");
 				md.update(signature.toByteArray());
+				Log.v("ianyuen", Base64.encodeToString(md.digest(), Base64.DEFAULT));
 			}
 		} catch (NameNotFoundException e) {	
 		} catch (NoSuchAlgorithmException e) {
